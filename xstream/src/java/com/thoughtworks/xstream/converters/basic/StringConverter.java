@@ -13,6 +13,7 @@ package com.thoughtworks.xstream.converters.basic;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.thoughtworks.xstream.core.util.WeakCache;
 
@@ -68,7 +69,7 @@ public class StringConverter extends AbstractSingleValueConverter {
      * @since 1.4.2
      */
     public StringConverter(final int lengthLimit) {
-        this(Collections.synchronizedMap(new WeakCache<String, String>()), lengthLimit);
+        this(new ConcurrentHashMap<>(new WeakCache<String, String>()), lengthLimit);
     }
 
     /**
